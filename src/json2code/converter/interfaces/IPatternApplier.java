@@ -1,5 +1,7 @@
 package json2code.converter.interfaces;
 
+import java.util.Map;
+
 import json2code.scheme.SchemeFile;
 
 /**
@@ -14,9 +16,8 @@ public interface IPatternApplier
 	 * Converts the scheme file into a string of classes.
 	 * 
 	 * @param schemeFile
-	 *            The scheme file to convert.
+	 *            A map from class name into class code.
 	 * @return A string with all classes.
 	 */
-	// TODO return a list of class strings
-	String convert(SchemeFile schemeFile);
+	Map<String, String> convert(SchemeFile schemeFile);
 }

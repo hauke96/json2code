@@ -1,5 +1,8 @@
 package json2code.converter.java;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
@@ -25,30 +28,34 @@ public class JavaPatternApplier implements IPatternApplier
 	}
 	
 	@Override
-	public String convert(SchemeFile schemeFile)
+	public Map<String, String> convert(SchemeFile schemeFile)
 	{
-		StringBuilder result = new StringBuilder();
+		Map<String, String> resultMap = new HashMap<>(schemeFile.getClasses().size());
 		
 		for (Class clazz : schemeFile.getClasses())
 		{
-			result.append(pattern.getHeader(clazz));
+			StringBuilder classCode = new StringBuilder();
+			
+			classCode.append(pattern.getHeader(clazz));
 			
 			for (Field field : clazz.getFields())
 			{
-				result.append(pattern.getFieldDefinition(field));
+				classCode.append(pattern.getFieldDefinition(field));
 			}
 			
-			result.append(pattern.getCreator(clazz));
+			classCode.append(pattern.getCreator(clazz));
 			
 			for (Field field : clazz.getFields())
 			{
-				result.append(pattern.getMethods(field));
+				classCode.append(pattern.getMethods(field));
 			}
 			
-			result.append(pattern.getFooter(clazz));
-			result.append("\n\n\n");
+			classCode.append(pattern.getFooter(clazz));
+			classCode.append("\n\n\n");
+			
+			resultMap.put(clazz.getName(), classCode.toString());
 		}
 		
-		return result.toString();
+		return resultMap;
 	}
 }

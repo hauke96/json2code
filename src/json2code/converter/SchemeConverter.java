@@ -56,7 +56,7 @@ public class SchemeConverter
 	 * 
 	 * @return A string of classes
 	 */
-	public String convert()
+	public Map<String, String> convert()
 	{
 		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
 		

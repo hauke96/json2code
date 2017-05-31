@@ -1,7 +1,7 @@
 package json2code.converter.interfaces;
 
-import json2code.scheme.Field;
 import json2code.scheme.Class;
+import json2code.scheme.Field;
 
 /**
  * A pattern is the basic mapping between json and the target language. 'Which json pattern leads to which target pattern?' is the question this interface answers.
