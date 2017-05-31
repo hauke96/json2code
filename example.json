@@ -1,0 +1,41 @@
+{
+	"schemes":
+	[
+		{
+			"name": "Train",
+			"properties":
+			[
+				{
+					"name": "ModelName",
+					"type": "string",
+					"constant": true,
+					"collection": false
+				},
+				{
+					"name": "Passengers",
+					"type": "Person",
+					"constant": true,
+					"collection": true
+				}
+			]
+		},
+		{
+			"name": "Person",
+			"properties":
+				[
+				{
+					"name": "Name",
+					"type": "string",
+					"constant": true,
+					"collection": false
+				},
+				{
+					"name": "Age",
+					"type": "int",
+					"constant": false,
+					"collection": false
+				}
+			]
+		}
+	]
+}
