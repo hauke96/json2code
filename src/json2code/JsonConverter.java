@@ -19,8 +19,8 @@ public class JsonConverter
 	/**
 	 * Turn to true to print debug output and load the {@code example.json} file and {@code Java} target language.
 	 */
-	private static final boolean DUMMY_MODE = true;
-	// private static final boolean DUMMY_MODE = false;
+	// private static final boolean DUMMY_MODE = true;
+	private static final boolean DUMMY_MODE = false;
 	
 	public static void main(String[] args)
 	{
@@ -45,7 +45,8 @@ public class JsonConverter
 		SchemeFile schemeFile = schemeReader.getSchemeFile();
 		
 		SchemeConverter converter = new SchemeConverter(schemeFile, targetLanguage);
-		System.out.println(converter.convert());
+		
+		converter.convert().values().forEach(string -> Logger.__info(string));
 	}
 	
 	/**
