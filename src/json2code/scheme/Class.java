@@ -14,17 +14,19 @@ public class Class
 	private String				name;
 	private ArrayList<Field>	properties;
 	
-	public Class()
-	{
-	}
-	
+	/**
+	 * @return The name of the class.
+	 */
 	public String getName()
 	{
 		return name;
 	}
 	
+	/**
+	 * @return The list of fields.
+	 */
 	@SuppressWarnings ("unchecked")
-	public List<Field> getProperties()
+	public List<Field> getFields()
 	{
 		return (List<Field>) properties.clone();
 	}

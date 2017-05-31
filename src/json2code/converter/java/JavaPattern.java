@@ -9,10 +9,22 @@ import json2code.scheme.Class;
 import json2code.scheme.Field;
 import juard.contract.Contract;
 
+/**
+ * The Java pattern provides methods to convert a scheme file into java classes.
+ * 
+ * @author hauke
+ *
+ */
 public class JavaPattern implements IPattern
 {
 	private ITypeMapper typeMapper;
 	
+	/**
+	 * Initializes the pattern.
+	 * 
+	 * @param typeMapper
+	 *            A java type mapper.
+	 */
 	public JavaPattern(ITypeMapper typeMapper)
 	{
 		Contract.RequireNotNull(typeMapper);
@@ -56,7 +68,7 @@ public class JavaPattern implements IPattern
 		stringBuilder.append(clazz.getName());
 		stringBuilder.append("(");
 		
-		List<Field> properties = clazz.getProperties();
+		List<Field> properties = clazz.getFields();
 		for (int i = 0; i < properties.size(); i++)
 		{
 			Field field = properties.get(i);
@@ -111,6 +123,14 @@ public class JavaPattern implements IPattern
 		return "}";
 	}
 	
+	/**
+	 * Gets the type of the given field considering its properties (e.g. {@code isCollection}).
+	 * 
+	 * @param field
+	 *            The field which type you want to know.
+	 * @return The real type.
+	 */
+	// TODO move into type mapper
 	private String getTypeOf(Field field)
 	{
 		Contract.RequireNotNull(field);

@@ -11,19 +11,34 @@ import com.google.gson.Gson;
 import json2code.scheme.SchemeFile;
 import juard.log.Logger;
 
+/**
+ * Basically this reads a scheme file.
+ * 
+ * @author hauke
+ *
+ */
 public class SchemeReader
 {
 	private String fileName;
 	
+	/**
+	 * Initializes the reader for the given file.
+	 * 
+	 * @param fileName
+	 *            The file you want to load.
+	 */
 	public SchemeReader(String fileName)
 	{
 		this.fileName = fileName;
 	}
 	
+	/**
+	 * @return The converted scheme file.
+	 */
 	public SchemeFile getSchemeFile()
 	{
-		
 		Logger.__info("Read file ...");
+		
 		byte[] encoded = null;
 		try
 		{

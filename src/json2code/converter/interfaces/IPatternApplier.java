@@ -10,5 +10,13 @@ import json2code.scheme.SchemeFile;
  */
 public interface IPatternApplier
 {
+	/**
+	 * Converts the scheme file into a string of classes.
+	 * 
+	 * @param schemeFile
+	 *            The scheme file to convert.
+	 * @return A string with all classes.
+	 */
+	// TODO return a list of class strings
 	String convert(SchemeFile schemeFile);
 }

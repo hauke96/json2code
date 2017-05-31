@@ -8,9 +8,19 @@ import json2code.converter.SchemeReader;
 import json2code.scheme.SchemeFile;
 import juard.log.Logger;
 
+/**
+ * The json2code converter takes a scheme definition (in form of a json file) and creates classes of the specified target language.
+ * 
+ * @author hauke
+ *
+ */
 public class JsonConverter
 {
+	/**
+	 * Turn to true to print debug output and load the {@code example.json} file and {@code Java} target language.
+	 */
 	private static final boolean DUMMY_MODE = true;
+	// private static final boolean DUMMY_MODE = false;
 	
 	public static void main(String[] args)
 	{
