@@ -1,0 +1,41 @@
+package json2code.converter.java;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
+
+import json2code.converter.interfaces.IOutputWriter;
+import juard.log.Logger;
+
+/**
+ * Creates for every java class an own file with its content.
+ * 
+ * @author hauke
+ *
+ */
+public class JavaOutputWriter implements IOutputWriter
+{
+	@Override
+	public void write(String outputDirectory, Map<String, String> classes)
+	{
+		if (!outputDirectory.endsWith("/"))
+		{
+			outputDirectory += "/";
+		}
+		
+		for (String className : classes.keySet())
+		{
+			File file = new File(outputDirectory + className + ".java");
+			
+			try (FileOutputStream stream = new FileOutputStream(file))
+			{
+				stream.write(classes.get(className).getBytes());
+			}
+			catch (IOException e)
+			{
+				Logger.__error("Cannot write to file " + file.getName(), e);
+			}
+		}
+	}
+}

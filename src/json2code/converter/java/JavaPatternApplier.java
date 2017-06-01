@@ -3,6 +3,8 @@ package json2code.converter.java;
 import java.util.HashMap;
 import java.util.Map;
 
+import json2code.converter.interfaces.IOutputWriter;
+import json2code.converter.interfaces.IPattern;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
@@ -16,7 +18,8 @@ import json2code.scheme.SchemeFile;
  */
 public class JavaPatternApplier implements IPatternApplier
 {
-	private JavaPattern pattern;
+	private IPattern pattern;
+	private IOutputWriter outputWriter;
 	
 	/**
 	 * Creates an empty pattern applier using the {@link JavaTypeMapper} and {@link JavaPattern}.
@@ -25,6 +28,7 @@ public class JavaPatternApplier implements IPatternApplier
 	{
 		JavaTypeMapper typeMapper = new JavaTypeMapper();
 		pattern = new JavaPattern(typeMapper);
+		outputWriter = new JavaOutputWriter();
 	}
 	
 	@Override

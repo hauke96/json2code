@@ -81,7 +81,6 @@ public class SchemeConverter
 		stringBuilder.append("Unrecognized target language ");
 		stringBuilder.append(targetLanguage);
 		stringBuilder.append(".\nKnown languages are:\n\n");
-		String message = stringBuilder.toString();
 		
 		for (String language : knownLanguages.keySet())
 		{
@@ -89,6 +88,7 @@ public class SchemeConverter
 			stringBuilder.append(language);
 			stringBuilder.append("\n");
 		}
+		String message = stringBuilder.toString();
 		
 		Logger.__fatal(message);
 		return null; // will never be executed (Logger.__fatal will close the app), but the compiler needs it ;)
