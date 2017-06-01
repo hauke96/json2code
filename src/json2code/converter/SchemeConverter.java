@@ -19,13 +19,6 @@ public class SchemeConverter
 {
 	private static Map<String, IPatternApplier> knownLanguages;
 	
-	static
-	{
-		knownLanguages = new HashMap<>();
-		
-		knownLanguages.put("java", new JavaPatternApplier());
-	}
-	
 	private SchemeFile	schemeFile;
 	private String		targetLanguage;
 	
@@ -36,16 +29,31 @@ public class SchemeConverter
 	 *            The scheme file which should be converted.
 	 * @param targetLanguage
 	 *            The language you want to have your output classes in.
+	 * @param additionalArgs
+	 *            Some additional arguments that are language specific.
 	 */
-	public SchemeConverter(SchemeFile schemeFile, String targetLanguage)
+	public SchemeConverter(SchemeFile schemeFile, String targetLanguage, String[] additionalArgs)
 	{
 		Contract.RequireNotNull(schemeFile);
 		Contract.RequireNotNullOrEmpty(targetLanguage);
+		Contract.RequireNotNull(additionalArgs);
 		
 		this.schemeFile = schemeFile;
 		this.targetLanguage = targetLanguage.toLowerCase();
+		
+		if(knownLanguages==null) 
+		{
+			initKnownLanguages(additionalArgs);
+		}
 	}
 	
+	private void initKnownLanguages(String[] additionalArgs)
+	{
+		knownLanguages = new HashMap<>();
+		
+		knownLanguages.put("java", new JavaPatternApplier(additionalArgs));
+	}
+
 	/**
 	 * Converts the scheme into classes of the target language. Specify them in the constructor.
 	 */

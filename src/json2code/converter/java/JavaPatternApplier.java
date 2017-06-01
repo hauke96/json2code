@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import json2code.converter.interfaces.IOutputWriter;
-import json2code.converter.interfaces.IPattern;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
 import juard.contract.Contract;
+import juard.log.Logger;
 
 /**
  * The pattern applier is the real converter here. It takes the java pattern and the scheme file and turns them into java classes.
@@ -19,16 +19,29 @@ import juard.contract.Contract;
  */
 public class JavaPatternApplier implements IPatternApplier
 {
-	private IPattern		pattern;
+	private JavaPattern		pattern;
 	private IOutputWriter	outputWriter;
 	
 	private HashMap<String, String> resultMap;
+	private String[] additionalArgs;
 	
 	/**
 	 * Creates an empty pattern applier using the {@link JavaTypeMapper} and {@link JavaPattern}.
+	 * 
+	 * @param additionalArgs
+	 *            Some java specific arguments
 	 */
-	public JavaPatternApplier()
+	public JavaPatternApplier(String[] additionalArgs)
 	{
+		Contract.RequireNotNull(additionalArgs);
+		
+		if(additionalArgs.length!=1) 
+		{
+			Logger.__fatal("The amount of arguments after the java-argument must be 1. Only specify the package name.");
+		}
+		
+		this.additionalArgs = additionalArgs;
+		
 		JavaTypeMapper typeMapper = new JavaTypeMapper();
 		pattern = new JavaPattern(typeMapper);
 		outputWriter = new JavaOutputWriter();
@@ -43,7 +56,7 @@ public class JavaPatternApplier implements IPatternApplier
 		{
 			StringBuilder classCode = new StringBuilder();
 			
-			classCode.append(pattern.getHeader(clazz));
+			classCode.append(pattern.getHeader(clazz, additionalArgs[0]));
 			
 			for (Field field : clazz.getFields())
 			{

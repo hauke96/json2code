@@ -37,7 +37,33 @@ public class JavaPattern implements IPattern
 	{
 		Contract.RequireNotNull(clazz);
 		
-		String header = MessageFormat.format("public class {0} \n'{'\n", clazz.getName());
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("import java.util.List;\n\n");
+		builder.append("public class ");
+		builder.append(clazz.getName());
+		builder.append(" \n{\n");
+		
+		return builder.toString();
+	}
+	
+	/**
+	 * Creates the beginning/header of the target class.
+	 * 
+	 * @param clazz
+	 *            The class you want to have the header of.
+	 * @param packageName
+	 *            The name of the package.
+	 * @return The header.
+	 */
+	public String getHeader(Class clazz, String packageName)
+	{
+		Contract.RequireNotNull(clazz);
+		
+		String header = "package " + packageName + ";\n\n";
+		
+		header += getHeader(clazz);
+		
 		return header;
 	}
 	

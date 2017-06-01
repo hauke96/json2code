@@ -32,6 +32,11 @@ public class JavaOutputWriter implements IOutputWriter
 		{
 			File file = new File(outputDirectory + className + ".java");
 			
+			// Create output file if not exists
+			// If file already exists, this will to nothing.
+			file.getParentFile().mkdirs();
+			
+			// Write to output file
 			try (FileOutputStream stream = new FileOutputStream(file))
 			{
 				stream.write(classes.get(className).getBytes());

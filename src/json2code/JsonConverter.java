@@ -2,6 +2,7 @@ package json2code;
 
 import java.io.File;
 import java.text.MessageFormat;
+import java.util.Arrays;
 
 import json2code.converter.SchemeConverter;
 import json2code.converter.SchemeReader;
@@ -27,11 +28,12 @@ public class JsonConverter
 		if (DUMMY_MODE)
 		{
 			Logger.__showDebug = true;
-			args = new String[3];
+			args = new String[4];
 			
-			args[0] = "example.json";
+			args[0] = "./example/example.json";
 			args[1] = "java";
-			args[2] = "./";
+			args[2] = "./example/src/com/foo/bar/material/";
+			args[3] = "com.foo.bar.material";
 		}
 		
 		checkParameter(args);
@@ -40,6 +42,8 @@ public class JsonConverter
 		String targetLanguage = args[1];
 		String outputDirectory = args[2];
 		
+		String[] additionalArgs = Arrays.copyOfRange(args, 3, args.length);
+		
 		Logger.__info("Use file       : " + fileName);
 		Logger.__info("Use language   : " + targetLanguage);
 		Logger.__info("Use output dir : " + outputDirectory);
@@ -47,7 +51,7 @@ public class JsonConverter
 		SchemeReader schemeReader = new SchemeReader(fileName);
 		SchemeFile schemeFile = schemeReader.getSchemeFile();
 		
-		SchemeConverter converter = new SchemeConverter(schemeFile, targetLanguage);
+		SchemeConverter converter = new SchemeConverter(schemeFile, targetLanguage, additionalArgs);
 		
 		converter.convert();
 		converter.printResult();
