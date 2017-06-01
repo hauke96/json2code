@@ -37,7 +37,7 @@ public class JavaPattern implements IPattern
 	{
 		Contract.RequireNotNull(clazz);
 		
-		String header = MessageFormat.format("public class {0} '{'\n", clazz.getName());
+		String header = MessageFormat.format("public class {0} \n'{'\n", clazz.getName());
 		return header;
 	}
 	
@@ -53,7 +53,7 @@ public class JavaPattern implements IPattern
 		String name = field.getName();
 		
 		// Generate definition
-		return MessageFormat.format("private {0} {1};\n", type, name);
+		return MessageFormat.format("\tprivate {0} {1};\n", type, name);
 	}
 	
 	@Override
@@ -62,9 +62,9 @@ public class JavaPattern implements IPattern
 		Contract.RequireNotNull(clazz);
 		
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("public ");
+		stringBuilder.append("\n\tpublic ");
 		stringBuilder.append(clazz.getName());
-		stringBuilder.append("(){}\npublic ");
+		stringBuilder.append("(){}\n\n\tpublic ");
 		stringBuilder.append(clazz.getName());
 		stringBuilder.append("(");
 		
@@ -85,18 +85,18 @@ public class JavaPattern implements IPattern
 		}
 		
 		// End of constructor signature
-		stringBuilder.append("){\n");
+		stringBuilder.append(")\n\t{\n");
 		
 		for (Field field : properties)
 		{
-			stringBuilder.append("this.");
+			stringBuilder.append("\t\tthis.");
 			stringBuilder.append(field.getName());
 			stringBuilder.append(" = ");
 			stringBuilder.append(field.getName());
 			stringBuilder.append(";\n");
 		}
 		
-		stringBuilder.append("}\n");
+		stringBuilder.append("\t}\n");
 		
 		String constructor = stringBuilder.toString();
 		return constructor;
@@ -107,11 +107,11 @@ public class JavaPattern implements IPattern
 	{
 		Contract.RequireNotNull(field);
 		
-		String method = MessageFormat.format("public {0} get{1}()'{'\nreturn {1};'}'\n", getTypeOf(field), field.getName());
+		String method = MessageFormat.format("\n\tpublic {0} get{1}()\n\t'{'\n\t\treturn {1};\n\t'}'\n", getTypeOf(field), field.getName());
 		
 		if (!field.isConstant())
 		{
-			method += MessageFormat.format("public void set{1}({0} {1})'{'\nthis.{1} = {1};'}'\n", getTypeOf(field), field.getName());
+			method += MessageFormat.format("\n\tpublic void set{1}({0} {1})\n\t'{'\n\t\tthis.{1} = {1};\n\t'}'\n", getTypeOf(field), field.getName());
 		}
 		
 		return method;
