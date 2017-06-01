@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import json2code.converter.interfaces.IOutputWriter;
+import juard.contract.Contract;
 import juard.log.Logger;
 
 /**
@@ -19,6 +20,9 @@ public class JavaOutputWriter implements IOutputWriter
 	@Override
 	public void write(String outputDirectory, Map<String, String> classes)
 	{
+		Contract.RequireNotNullOrEmpty(outputDirectory);
+		Contract.RequireNotNull(classes);
+		
 		if (!outputDirectory.endsWith("/"))
 		{
 			outputDirectory += "/";

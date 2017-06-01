@@ -9,6 +9,7 @@ import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
+import juard.contract.Contract;
 
 /**
  * The pattern applier is the real converter here. It takes the java pattern and the scheme file and turns them into java classes.
@@ -18,8 +19,10 @@ import json2code.scheme.SchemeFile;
  */
 public class JavaPatternApplier implements IPatternApplier
 {
-	private IPattern pattern;
-	private IOutputWriter outputWriter;
+	private IPattern		pattern;
+	private IOutputWriter	outputWriter;
+	
+	private HashMap<String, String> resultMap;
 	
 	/**
 	 * Creates an empty pattern applier using the {@link JavaTypeMapper} and {@link JavaPattern}.
@@ -32,9 +35,9 @@ public class JavaPatternApplier implements IPatternApplier
 	}
 	
 	@Override
-	public Map<String, String> convert(SchemeFile schemeFile)
+	public void convert(SchemeFile schemeFile)
 	{
-		Map<String, String> resultMap = new HashMap<>(schemeFile.getClasses().size());
+		resultMap = new HashMap<>(schemeFile.getClasses().size());
 		
 		for (Class clazz : schemeFile.getClasses())
 		{
@@ -60,6 +63,29 @@ public class JavaPatternApplier implements IPatternApplier
 			resultMap.put(clazz.getName(), classCode.toString());
 		}
 		
+		Contract.EnsureNotNull(hasResult());
+	}
+	
+	@Override
+	public void writeResultTo(String outputDirectory)
+	{
+		Contract.RequireNotNullOrEmpty(outputDirectory);
+		Contract.Require(hasResult());
+		
+		outputWriter.write(outputDirectory, resultMap);
+	}
+	
+	@Override
+	public Map<String, String> getResult()
+	{
+		Contract.Require(hasResult());
+		
 		return resultMap;
+	}
+	
+	@Override
+	public boolean hasResult()
+	{
+		return resultMap != null;
 	}
 }

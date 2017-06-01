@@ -1,11 +1,7 @@
 package json2code;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.Map;
 
 import json2code.converter.SchemeConverter;
 import json2code.converter.SchemeReader;
@@ -53,10 +49,9 @@ public class JsonConverter
 		
 		SchemeConverter converter = new SchemeConverter(schemeFile, targetLanguage);
 		
-		Map<String, String> result = converter.convert();
-		result.values().forEach(string -> Logger.__info(string));
-		
-		writeToOutputDirectory(outputDirectory, result);
+		converter.convert();
+		converter.printResult();
+		converter.writeResult(outputDirectory);
 	}
 	
 	/**
@@ -83,33 +78,6 @@ public class JsonConverter
 		{
 			String message = MessageFormat.format("File {0} does not exist!", args[0]);
 			Logger.__fatal(message);
-		}
-	}
-
-	/**
-	 * Writes the result of the conversation into separate files
-	 * @param outputDirectory
-	 * @param result
-	 */
-	private static void writeToOutputDirectory(String outputDirectory, Map<String, String> result)
-	{
-		if (!outputDirectory.endsWith("/"))
-		{
-			outputDirectory += "/";
-		}
-		
-		for (String className : result.keySet())
-		{
-			File file = new File(outputDirectory + className + ".java");
-			
-			try (FileOutputStream stream = new FileOutputStream(file))
-			{
-				stream.write(result.get(className).getBytes());
-			}
-			catch (IOException e)
-			{
-				Logger.__error("Cannot write to file " + file.getName(), e);
-			}
 		}
 	}
 }

@@ -24,6 +24,7 @@ public class SchemeConverter
 	
 	private static Map<String, IPatternResolver> knownLanguages;
 	
+	
 	static
 	{
 		knownLanguages = new HashMap<>();
@@ -53,14 +54,52 @@ public class SchemeConverter
 	
 	/**
 	 * Converts the scheme into classes of the target language. Specify them in the constructor.
-	 * 
-	 * @return A string of classes
 	 */
-	public Map<String, String> convert()
+	public void convert()
 	{
 		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
 		
-		return patternApplier.convert(schemeFile);
+		patternApplier.convert(schemeFile);
+	}
+	
+	/**
+	 * Prints the result of the converter.
+	 * Call its {@link IPatternApplier#convert(SchemeFile)} method first.
+	 */
+	public void printResult()
+	{
+		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
+		
+		if (patternApplier.hasResult())
+		{
+			Map<String, String> result = patternApplier.getResult();
+			result.values().forEach(string -> Logger.__info(string));
+		}
+		else
+		{
+			Logger.__error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
+		}
+	}
+	
+	/**
+	 * Writes the result of the converter to the given output directory.
+	 * Call its {@link IPatternApplier#convert(SchemeFile)} method first.
+	 * 
+	 * @param outputDirectory
+	 *            The directory the result classes should be in.
+	 */
+	public void writeResult(String outputDirectory)
+	{
+		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
+		
+		if (patternApplier.hasResult())
+		{
+			patternApplier.writeResultTo(outputDirectory);
+		}
+		else
+		{
+			Logger.__error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
+		}
 	}
 	
 	/**
