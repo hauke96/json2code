@@ -17,19 +17,13 @@ import juard.log.Logger;
  */
 public class SchemeConverter
 {
-	private interface IPatternResolver
-	{
-		IPatternApplier get();
-	}
-	
-	private static Map<String, IPatternResolver> knownLanguages;
-	
+	private static Map<String, IPatternApplier> knownLanguages;
 	
 	static
 	{
 		knownLanguages = new HashMap<>();
 		
-		knownLanguages.put("java", () -> getJavaPatternApplier());
+		knownLanguages.put("java", new JavaPatternApplier());
 	}
 	
 	private SchemeFile	schemeFile;
@@ -113,7 +107,7 @@ public class SchemeConverter
 	{
 		if (knownLanguages.containsKey(targetLanguage))
 		{
-			return knownLanguages.get(targetLanguage).get();
+			return knownLanguages.get(targetLanguage);
 		}
 		
 		StringBuilder stringBuilder = new StringBuilder();
@@ -131,15 +125,5 @@ public class SchemeConverter
 		
 		Logger.__fatal(message);
 		return null; // will never be executed (Logger.__fatal will close the app), but the compiler needs it ;)
-	}
-	
-	/**
-	 * Gets the pattern for {@code Java}.
-	 * 
-	 * @return The java pattern applier.
-	 */
-	private static IPatternApplier getJavaPatternApplier()
-	{
-		return new JavaPatternApplier();
 	}
 }
