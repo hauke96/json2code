@@ -5,7 +5,7 @@ import java.util.HashMap;
 import json2code.converter.interfaces.ITypeMapper;
 import juard.contract.Contract;
 
-public class GoTypeMapper implements ITypeMapper
+public class GoTypeMapper extends ITypeMapper
 {
 	// TODO make ITypeMapper abstract class and move field up there
 	private HashMap<String, String> typeMap;

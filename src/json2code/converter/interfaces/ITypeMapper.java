@@ -6,11 +6,11 @@ package json2code.converter.interfaces;
  * @author hauke
  *
  */
-public interface ITypeMapper
+public abstract class ITypeMapper
 {
-	static final String	STRING	= "string";
-	static final String	NUMBER	= "int";
-	static final String	BOOLEAN	= "bool";
+	protected static final String	STRING	= "string";
+	protected static final String	NUMBER	= "int";
+	protected static final String	BOOLEAN	= "bool";
 	
 	/**
 	 * Converts the given scheme type into the type of the target language (specified by the implementation of this method).
@@ -19,5 +19,5 @@ public interface ITypeMapper
 	 *            The scheme type.
 	 * @return The type in the target language.
 	 */
-	String getTargetType(String schemeType);
+	public abstract String getTargetType(String schemeType);
 }

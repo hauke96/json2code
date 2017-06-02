@@ -11,7 +11,7 @@ import juard.contract.Contract;
  * @author hauke
  *
  */
-public class JavaTypeMapper implements ITypeMapper
+public class JavaTypeMapper extends ITypeMapper
 {
 	// TODO make ITypeMapper abstract class and move field up there
 	private HashMap<String, String> typeMap;

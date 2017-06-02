@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.converter.interfaces.ITypeMapper;
-import json2code.converter.languages.java.JavaPattern;
-import json2code.converter.languages.java.JavaTypeMapper;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
