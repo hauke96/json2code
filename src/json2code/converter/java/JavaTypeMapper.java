@@ -13,6 +13,7 @@ import juard.contract.Contract;
  */
 public class JavaTypeMapper implements ITypeMapper
 {
+	// TODO make ITypeMapper abstract class and move field up there
 	private HashMap<String, String> typeMap;
 	
 	/**
@@ -27,6 +28,7 @@ public class JavaTypeMapper implements ITypeMapper
 		typeMap.put(BOOLEAN, "boolean");
 	}
 	
+	// TODO move method also in super class (s.o.)
 	@Override
 	public String getTargetType(String schemeType)
 	{
@@ -40,5 +42,4 @@ public class JavaTypeMapper implements ITypeMapper
 		Contract.EnsureNotNull(targetType);
 		return targetType;
 	}
-	
 }

@@ -21,6 +21,17 @@ public interface IPattern
 	String getHeader(Class clazz);
 	
 	/**
+	 * Creates the beginning/header of the target class.
+	 * 
+	 * @param clazz
+	 *            The class you want to have the header of.
+	 * @param packageName
+	 *            The name of the package.
+	 * @return The header.
+	 */
+	String getHeader(Class clazz, String packageName);
+
+	/**
 	 * Creates the definition of the given field.
 	 * 
 	 * @param field

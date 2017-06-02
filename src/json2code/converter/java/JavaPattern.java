@@ -47,15 +47,7 @@ public class JavaPattern implements IPattern
 		return builder.toString();
 	}
 	
-	/**
-	 * Creates the beginning/header of the target class.
-	 * 
-	 * @param clazz
-	 *            The class you want to have the header of.
-	 * @param packageName
-	 *            The name of the package.
-	 * @return The header.
-	 */
+	@Override
 	public String getHeader(Class clazz, String packageName)
 	{
 		Contract.RequireNotNull(clazz);

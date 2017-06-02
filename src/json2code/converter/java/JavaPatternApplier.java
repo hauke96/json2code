@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import json2code.converter.interfaces.IOutputWriter;
+import json2code.converter.interfaces.IPattern;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
@@ -19,7 +20,7 @@ import juard.log.Logger;
  */
 public class JavaPatternApplier implements IPatternApplier
 {
-	private JavaPattern		pattern;
+	private IPattern pattern;
 	private IOutputWriter	outputWriter;
 	
 	private HashMap<String, String> resultMap;
