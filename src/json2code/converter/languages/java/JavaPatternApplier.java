@@ -3,7 +3,7 @@ package json2code.converter.languages.java;
 import java.util.HashMap;
 import java.util.Map;
 
-import json2code.converter.interfaces.IPatternApplier;
+import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
@@ -16,8 +16,8 @@ import juard.log.Logger;
  * @author hauke
  *
  */
-// TODO make IPatternApplier to an abstract class and move fields there
-public class JavaPatternApplier extends IPatternApplier
+// TODO make AbstractPatternApplier to an abstract class and move fields there
+public class JavaPatternApplier extends AbstractPatternApplier
 {
 	/**
 	 * Creates an empty pattern applier using the {@link JavaTypeMapper} and {@link JavaPattern}.

@@ -3,7 +3,7 @@ package json2code.converter;
 import java.util.HashMap;
 import java.util.Map;
 
-import json2code.converter.interfaces.IPatternApplier;
+import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.converter.languages.go.GoPatternApplier;
 import json2code.converter.languages.java.JavaPatternApplier;
 import json2code.scheme.SchemeFile;
@@ -18,7 +18,7 @@ import juard.log.Logger;
  */
 public class SchemeConverter
 {
-	private static Map<String, IPatternApplier> knownLanguages;
+	private static Map<String, AbstractPatternApplier> knownLanguages;
 	
 	private SchemeFile	schemeFile;
 	private String		targetLanguage;
@@ -61,18 +61,18 @@ public class SchemeConverter
 	 */
 	public void convert()
 	{
-		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
+		AbstractPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
 		
 		patternApplier.convert(schemeFile);
 	}
 	
 	/**
 	 * Prints the result of the converter.
-	 * Call its {@link IPatternApplier#convert(SchemeFile)} method first.
+	 * Call its {@link AbstractPatternApplier#convert(SchemeFile)} method first.
 	 */
 	public void printResult()
 	{
-		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
+		AbstractPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
 		
 		if (patternApplier.hasResult())
 		{
@@ -87,14 +87,14 @@ public class SchemeConverter
 	
 	/**
 	 * Writes the result of the converter to the given output directory.
-	 * Call its {@link IPatternApplier#convert(SchemeFile)} method first.
+	 * Call its {@link AbstractPatternApplier#convert(SchemeFile)} method first.
 	 * 
 	 * @param outputDirectory
 	 *            The directory the result classes should be in.
 	 */
 	public void writeResult(String outputDirectory)
 	{
-		IPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
+		AbstractPatternApplier patternApplier = getPatternApplierFor(targetLanguage);
 		
 		if (patternApplier.hasResult())
 		{
@@ -113,7 +113,7 @@ public class SchemeConverter
 	 *            The language which pattern you want to find.
 	 * @return The pattern being found.
 	 */
-	private IPatternApplier getPatternApplierFor(String targetLanguage)
+	private AbstractPatternApplier getPatternApplierFor(String targetLanguage)
 	{
 		if (knownLanguages.containsKey(targetLanguage))
 		{

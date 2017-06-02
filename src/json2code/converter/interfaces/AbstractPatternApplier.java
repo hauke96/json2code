@@ -11,7 +11,7 @@ import json2code.scheme.SchemeFile;
  * @author hauke
  *
  */
-public abstract class IPatternApplier
+public abstract class AbstractPatternApplier
 {
 	protected IPattern		pattern;
 	protected IOutputWriter	outputWriter;
@@ -28,7 +28,7 @@ public abstract class IPatternApplier
 	public abstract void convert(SchemeFile schemeFile);
 	
 	/**
-	 * Writes the result created in {@link IPatternApplier#convert(SchemeFile)} into the given output directory.
+	 * Writes the result created in {@link AbstractPatternApplier#convert(SchemeFile)} into the given output directory.
 	 * The {@link #convert(SchemeFile)} method must be called first.
 	 * 
 	 * @param outputDirectory
