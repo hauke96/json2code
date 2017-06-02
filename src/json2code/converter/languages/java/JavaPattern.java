@@ -1,4 +1,4 @@
-package json2code.converter.java;
+package json2code.converter.languages.java;
 
 import java.text.MessageFormat;
 import java.util.List;

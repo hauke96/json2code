@@ -1,4 +1,4 @@
-package json2code.converter.java;
+package json2code.converter.languages.java;
 
 import java.io.File;
 import java.io.FileOutputStream;

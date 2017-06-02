@@ -3,9 +3,9 @@ package json2code.converter;
 import java.util.HashMap;
 import java.util.Map;
 
-import json2code.converter.go.GoPatternApplier;
 import json2code.converter.interfaces.IPatternApplier;
-import json2code.converter.java.JavaPatternApplier;
+import json2code.converter.languages.go.GoPatternApplier;
+import json2code.converter.languages.java.JavaPatternApplier;
 import json2code.scheme.SchemeFile;
 import juard.contract.Contract;
 import juard.log.Logger;

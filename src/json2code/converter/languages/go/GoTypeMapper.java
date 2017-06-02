@@ -1,17 +1,11 @@
-package json2code.converter.java;
+package json2code.converter.languages.go;
 
 import java.util.HashMap;
 
 import json2code.converter.interfaces.ITypeMapper;
 import juard.contract.Contract;
 
-/**
- * This type mapper turns the json scheme-types into real java types.
- * 
- * @author hauke
- *
- */
-public class JavaTypeMapper implements ITypeMapper
+public class GoTypeMapper implements ITypeMapper
 {
 	// TODO make ITypeMapper abstract class and move field up there
 	private HashMap<String, String> typeMap;
@@ -19,7 +13,7 @@ public class JavaTypeMapper implements ITypeMapper
 	/**
 	 * Initializes the mapper and its map.
 	 */
-	public JavaTypeMapper()
+	public GoTypeMapper()
 	{
 		typeMap = new HashMap<String, String>();
 		

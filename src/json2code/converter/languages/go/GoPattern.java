@@ -1,4 +1,4 @@
-package json2code.converter.go;
+package json2code.converter.languages.go;
 
 import java.util.List;
 
