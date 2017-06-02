@@ -1,7 +1,6 @@
 package json2code.converter.languages.java;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.scheme.Class;
@@ -71,31 +70,5 @@ public class JavaPatternApplier extends AbstractPatternApplier
 		}
 		
 		Contract.EnsureNotNull(hasResult());
-	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public void writeResultTo(String outputDirectory)
-	{
-		Contract.RequireNotNullOrEmpty(outputDirectory);
-		Contract.Require(hasResult());
-		
-		outputWriter.write(outputDirectory, resultMap);
-	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public Map<String, String> getResult()
-	{
-		Contract.Require(hasResult());
-		
-		return resultMap;
-	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public boolean hasResult()
-	{
-		return resultMap != null;
 	}
 }

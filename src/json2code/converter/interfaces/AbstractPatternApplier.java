@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import json2code.scheme.SchemeFile;
+import juard.contract.Contract;
 
 /**
  * The pattern applier actually knows how a class in the target language is structured. It therefore has to construct the target code.
@@ -34,17 +35,31 @@ public abstract class AbstractPatternApplier
 	 * @param outputDirectory
 	 *            The directory where the sources should be
 	 */
-	public abstract void writeResultTo(String outputDirectory);
+	public void writeResultTo(String outputDirectory)
+	{
+		Contract.RequireNotNullOrEmpty(outputDirectory);
+		Contract.Require(hasResult());
+		
+		outputWriter.write(outputDirectory, resultMap);
+	}
 	
 	/**
 	 * Gets the result from the {@link #convert(SchemeFile)} method which must be called first.
 	 * 
 	 * @return The result map, which maps from class name to class code.
 	 */
-	public abstract Map<String, String> getResult();
+	public Map<String, String> getResult()
+	{
+		Contract.Require(hasResult());
+		
+		return resultMap;
+	}
 	
 	/**
 	 * @return True when a result exists. Call {@link #convert(SchemeFile)} to create a result.
 	 */
-	public abstract boolean hasResult();
+	public boolean hasResult()
+	{
+		return resultMap != null;
+	}
 }

@@ -1,7 +1,6 @@
 package json2code.converter.languages.go;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.converter.interfaces.ITypeMapper;
@@ -11,7 +10,6 @@ import json2code.scheme.SchemeFile;
 import juard.contract.Contract;
 import juard.log.Logger;
 
-// TODO make AbstractPatternApplier to an abstract class and move fields there
 public class GoPatternApplier extends AbstractPatternApplier
 {
 	public GoPatternApplier(String[] additionalArgs)
@@ -63,29 +61,4 @@ public class GoPatternApplier extends AbstractPatternApplier
 		
 		Contract.EnsureNotNull(hasResult());
 	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public void writeResultTo(String outputDirectory)
-	{
-		Contract.RequireNotNullOrEmpty(outputDirectory);
-		Contract.Require(hasResult());
-		
-		outputWriter.write(outputDirectory, resultMap);
-	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public Map<String, String> getResult()
-	{
-		return resultMap;
-	}
-	
-	// TODO also move this up into super class (s.o.)
-	@Override
-	public boolean hasResult()
-	{
-		return resultMap != null;
-	}
-	
 }
