@@ -3,6 +3,7 @@ package json2code.converter;
 import java.util.HashMap;
 import java.util.Map;
 
+import json2code.converter.go.GoPatternApplier;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.converter.java.JavaPatternApplier;
 import json2code.scheme.SchemeFile;
@@ -41,7 +42,7 @@ public class SchemeConverter
 		this.schemeFile = schemeFile;
 		this.targetLanguage = targetLanguage.toLowerCase();
 		
-		if(knownLanguages==null) 
+		if (knownLanguages == null)
 		{
 			initKnownLanguages(additionalArgs);
 		}
@@ -52,8 +53,9 @@ public class SchemeConverter
 		knownLanguages = new HashMap<>();
 		
 		knownLanguages.put("java", new JavaPatternApplier(additionalArgs));
+		knownLanguages.put("go", new GoPatternApplier(additionalArgs));
 	}
-
+	
 	/**
 	 * Converts the scheme into classes of the target language. Specify them in the constructor.
 	 */

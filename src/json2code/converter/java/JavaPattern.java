@@ -136,6 +136,14 @@ public class JavaPattern implements IPattern
 	}
 	
 	@Override
+	public String getMethods(Field field, Class clazz)
+	{
+		Contract.RequireNotNull(field);
+		
+		return getMethods(field);
+	}
+	
+	@Override
 	public String getFooter(Class clazz)
 	{
 		return "}";

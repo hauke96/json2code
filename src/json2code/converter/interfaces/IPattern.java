@@ -30,7 +30,7 @@ public interface IPattern
 	 * @return The header.
 	 */
 	String getHeader(Class clazz, String packageName);
-
+	
 	/**
 	 * Creates the definition of the given field.
 	 * 
@@ -57,6 +57,17 @@ public interface IPattern
 	 * @return The methods.
 	 */
 	String getMethods(Field field);
+	
+	/**
+	 * Gets some default methods/getter/setter for the given field according to its properties.
+	 * 
+	 * @param field
+	 *            The field which methods you want to have.
+	 * @param clazz
+	 *            The class this field is in.
+	 * @return The methods.
+	 */
+	String getMethods(Field field, Class clazz);
 	
 	/**
 	 * Creates the end of the target class.
