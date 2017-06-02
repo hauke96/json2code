@@ -11,7 +11,7 @@ import juard.contract.Contract;
  * @author hauke
  *
  */
-public abstract class ITypeMapper
+public abstract class AbstractTypeMapper
 {
 	protected static final String	STRING	= "string";
 	protected static final String	NUMBER	= "int";
@@ -19,7 +19,7 @@ public abstract class ITypeMapper
 	
 	protected Map<String, String> typeMap;
 	
-	public ITypeMapper()
+	public AbstractTypeMapper()
 	{
 		typeMap = new HashMap<>();
 	}

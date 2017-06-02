@@ -3,7 +3,7 @@ package json2code.converter.languages.go;
 import java.util.HashMap;
 
 import json2code.converter.interfaces.AbstractPatternApplier;
-import json2code.converter.interfaces.ITypeMapper;
+import json2code.converter.interfaces.AbstractTypeMapper;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
@@ -36,7 +36,7 @@ public class GoPatternApplier extends AbstractPatternApplier
 		
 		this.additionalArgs = additionalArgs;
 		
-		ITypeMapper typeMapper = new GoTypeMapper();
+		AbstractTypeMapper typeMapper = new GoTypeMapper();
 		
 		pattern = new GoPattern(typeMapper);
 		outputWriter = new GoOutputWriter();

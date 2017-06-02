@@ -1,6 +1,6 @@
 package json2code.converter.languages.go;
 
-import json2code.converter.interfaces.ITypeMapper;
+import json2code.converter.interfaces.AbstractTypeMapper;
 
 /**
  * This type mapper turns the json scheme-types into real go types.
@@ -8,7 +8,7 @@ import json2code.converter.interfaces.ITypeMapper;
  * @author hauke
  *
  */
-public class GoTypeMapper extends ITypeMapper
+public class GoTypeMapper extends AbstractTypeMapper
 {
 	/**
 	 * Initializes the mapper and its map.

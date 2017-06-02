@@ -3,8 +3,8 @@ package json2code.converter.languages.java;
 import java.text.MessageFormat;
 import java.util.List;
 
+import json2code.converter.interfaces.AbstractTypeMapper;
 import json2code.converter.interfaces.IPattern;
-import json2code.converter.interfaces.ITypeMapper;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import juard.contract.Contract;
@@ -17,7 +17,7 @@ import juard.contract.Contract;
  */
 public class JavaPattern implements IPattern
 {
-	private ITypeMapper typeMapper;
+	private AbstractTypeMapper typeMapper;
 	
 	/**
 	 * Initializes the pattern.
@@ -25,7 +25,7 @@ public class JavaPattern implements IPattern
 	 * @param typeMapper
 	 *            A java type mapper.
 	 */
-	public JavaPattern(ITypeMapper typeMapper)
+	public JavaPattern(AbstractTypeMapper typeMapper)
 	{
 		Contract.RequireNotNull(typeMapper);
 		

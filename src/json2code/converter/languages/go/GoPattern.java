@@ -2,15 +2,15 @@ package json2code.converter.languages.go;
 
 import java.util.List;
 
+import json2code.converter.interfaces.AbstractTypeMapper;
 import json2code.converter.interfaces.IPattern;
-import json2code.converter.interfaces.ITypeMapper;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import juard.contract.Contract;
 
 public class GoPattern implements IPattern
 {
-	private ITypeMapper typeMapper;
+	private AbstractTypeMapper typeMapper;
 	
 	/**
 	 * Initializes the pattern.
@@ -18,7 +18,7 @@ public class GoPattern implements IPattern
 	 * @param typeMapper
 	 *            A java type mapper.
 	 */
-	public GoPattern(ITypeMapper typeMapper)
+	public GoPattern(AbstractTypeMapper typeMapper)
 	{
 		Contract.RequireNotNull(typeMapper);
 		
