@@ -3,8 +3,6 @@ package json2code.converter.languages.go;
 import java.util.HashMap;
 import java.util.Map;
 
-import json2code.converter.interfaces.IOutputWriter;
-import json2code.converter.interfaces.IPattern;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.converter.interfaces.ITypeMapper;
 import json2code.scheme.Class;
@@ -14,14 +12,8 @@ import juard.contract.Contract;
 import juard.log.Logger;
 
 // TODO make IPatternApplier to an abstract class and move fields there
-public class GoPatternApplier implements IPatternApplier
+public class GoPatternApplier extends IPatternApplier
 {
-	private IPattern		pattern;
-	private IOutputWriter	outputWriter;
-	
-	private HashMap<String, String>	resultMap;
-	private String[]				additionalArgs;
-	
 	public GoPatternApplier(String[] additionalArgs)
 	{
 		Contract.RequireNotNull(additionalArgs);

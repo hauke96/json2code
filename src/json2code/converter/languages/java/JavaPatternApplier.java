@@ -3,8 +3,6 @@ package json2code.converter.languages.java;
 import java.util.HashMap;
 import java.util.Map;
 
-import json2code.converter.interfaces.IOutputWriter;
-import json2code.converter.interfaces.IPattern;
 import json2code.converter.interfaces.IPatternApplier;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
@@ -19,14 +17,8 @@ import juard.log.Logger;
  *
  */
 // TODO make IPatternApplier to an abstract class and move fields there
-public class JavaPatternApplier implements IPatternApplier
+public class JavaPatternApplier extends IPatternApplier
 {
-	private IPattern		pattern;
-	private IOutputWriter	outputWriter;
-	
-	private HashMap<String, String>	resultMap;
-	private String[]				additionalArgs;
-	
 	/**
 	 * Creates an empty pattern applier using the {@link JavaTypeMapper} and {@link JavaPattern}.
 	 * 
