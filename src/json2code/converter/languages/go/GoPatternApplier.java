@@ -4,14 +4,29 @@ import java.util.HashMap;
 
 import json2code.converter.interfaces.AbstractPatternApplier;
 import json2code.converter.interfaces.ITypeMapper;
+import json2code.converter.languages.java.JavaPattern;
+import json2code.converter.languages.java.JavaTypeMapper;
 import json2code.scheme.Class;
 import json2code.scheme.Field;
 import json2code.scheme.SchemeFile;
 import juard.contract.Contract;
 import juard.log.Logger;
 
+/**
+ * 
+ * The pattern applier is the real converter here. It takes the java pattern and the scheme file and turns them into go structs.
+ * 
+ * @author hauke
+ *
+ */
 public class GoPatternApplier extends AbstractPatternApplier
 {
+	/**
+	 * Creates an empty pattern applier using the {@link GoTypeMapper} and {@link GoPattern}.
+	 * 
+	 * @param additionalArgs
+	 *            Some go specific arguments
+	 */
 	public GoPatternApplier(String[] additionalArgs)
 	{
 		Contract.RequireNotNull(additionalArgs);

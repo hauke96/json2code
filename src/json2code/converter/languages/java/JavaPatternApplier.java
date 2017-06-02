@@ -15,7 +15,6 @@ import juard.log.Logger;
  * @author hauke
  *
  */
-// TODO make AbstractPatternApplier to an abstract class and move fields there
 public class JavaPatternApplier extends AbstractPatternApplier
 {
 	/**
