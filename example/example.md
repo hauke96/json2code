@@ -47,30 +47,31 @@
 ```go
 package main
 
-// Types
-type Train struct{
+// Train
+type Train struct {
 	modelName string `json:"ModelName"`
 	passengers []Person `json:"Passengers"`
 }
-type Person struct{
-	name string `json:"Name"`
-	Age int `json:"Age"`
-}
 
-// Creators
-func NewTrain(modelName string, passengers []Person){
+func NewTrain(modelName string, passengers []Person) {
 	return Train{modelName: modelName, passengers: passengers}
 }
-func NewPerson(name string, age int){
-	return Person{name: name, Age: age}
-}
 
-// Functions
 func (t Train) getModelName() string {
 	return t.modelName
 }
 func (t Train) gePassengers() []Person {
 	return t.passengers
+}
+
+// Person
+type Person struct {
+	name string `json:"Name"`
+	Age int `json:"Age"`
+}
+
+func NewPerson(name string, age int) {
+	return Person{name: name, Age: age}
 }
 func (p Person) getModelName() string {
 	return p.name
