@@ -10,8 +10,8 @@ public class Field
 {
 	private String	name;
 	private String	type;
-	private boolean	constant;
-	private boolean	collection;
+	private Boolean	constant;
+	private Boolean	collection;
 	
 	/**
 	 * @return The variable name of the field.
@@ -32,7 +32,7 @@ public class Field
 	/**
 	 * @return True when this field is a constant, false when not.
 	 */
-	public boolean isConstant()
+	public Boolean isConstant()
 	{
 		return constant;
 	}
@@ -40,7 +40,7 @@ public class Field
 	/**
 	 * @return True when this field is a collection, false when not.
 	 */
-	public boolean isCollection()
+	public Boolean isCollection()
 	{
 		return collection;
 	}

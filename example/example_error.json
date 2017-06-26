@@ -1,0 +1,36 @@
+{
+	"schemes":
+	[
+		{
+			"name": "MissingTypeProperties",
+			"properties":
+			[
+				{
+					"name": "ModelName",
+					"constant": true
+				}
+			]
+		},
+		{
+			"name": "DuplicateNameTag",
+			"properties":
+				[
+				{
+					"name": "Name",
+					"type": "string",
+					"constant": true,
+					"collection": false
+				},
+				{
+					"name": "Name",
+					"type": "string",
+					"constant": true,
+					"collection": false
+				}
+			]
+		},
+		{
+			"name": "EmptyElement"
+		}
+	]
+}

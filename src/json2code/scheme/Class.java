@@ -28,6 +28,8 @@ public class Class
 	@SuppressWarnings ("unchecked")
 	public List<Field> getFields()
 	{
+		if (properties == null) return null;
+		
 		return (List<Field>) properties.clone();
 	}
 }
