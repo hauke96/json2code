@@ -59,10 +59,12 @@ public class GoPattern implements IPattern
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("\t");
-		builder.append(startWithLowerCase(name));
+		builder.append(startWithUpperCase(name));
 		builder.append(" ");
-		builder.append(typeMapper.getTargetType(field.getType()));
-		builder.append(" `json:\"");
+		builder.append(" ");
+		builder.append(getTypeOf(field));
+		builder.append(" ");
+		builder.append("`json:\"");
 		builder.append(name);
 		builder.append("\"`\n");
 		
@@ -79,36 +81,41 @@ public class GoPattern implements IPattern
 		builder.append(clazz.getName());
 		builder.append("(");
 		
+		// Create parameters
 		List<Field> properties = clazz.getFields();
 		for (int i = 0; i < properties.size(); i++)
 		{
 			Field field = properties.get(i);
 			
-			builder.append(getTypeOf(field));
-			builder.append(" ");
 			builder.append(startWithLowerCase(field.getName()));
+			builder.append(" ");
+			builder.append(getTypeOf(field));
 			
-			// comma between arguments (except the last one)
+			// comma between parameters (except the last one)
 			if (i + 1 != properties.size())
 			{
 				builder.append(", ");
 			}
 		}
 		
-		builder.append(")\n\t");
+		builder.append(")");
+		builder.append(clazz.getName()); // return type
+		builder.append("{\n\t");
 		builder.append("return ");
 		builder.append(clazz.getName());
 		builder.append("{");
 		
+		// Initialize class
 		for (int i = 0; i < properties.size(); i++)
 		{
 			Field field = properties.get(i);
 			
-			String fieldName = startWithLowerCase(field.getName());
+			String upperCaseFieldName = startWithUpperCase(field.getName());
+			String lowerCaseFieldName = startWithLowerCase(field.getName());
 			
-			builder.append(fieldName);
+			builder.append(upperCaseFieldName);
 			builder.append(": ");
-			builder.append(fieldName);
+			builder.append(lowerCaseFieldName);
 			
 			// comma between arguments (except the last one)
 			if (i + 1 != properties.size())
@@ -125,7 +132,7 @@ public class GoPattern implements IPattern
 	@Override
 	public String getMethods(Field field)
 	{
-		throw new UnsupportedOperationException("Please use getMethods(Field field, Class clazz)");
+		throw new UnsupportedOperationException("Please use GetMethods(Field field, Class clazz)");
 	}
 	
 	@Override
@@ -138,15 +145,15 @@ public class GoPattern implements IPattern
 		builder.append(receriverName);
 		builder.append(" ");
 		builder.append(clazz.getName());
-		builder.append(") get");
+		builder.append(") Get");
 		builder.append(field.getName());
 		builder.append("() ");
 		builder.append(getTypeOf(field));
 		builder.append(" {\n\treturn ");
 		builder.append(receriverName);
 		builder.append(".");
-		builder.append(startWithLowerCase(field.getName()));
-		builder.append("\n}\n");
+		builder.append(startWithUpperCase(field.getName()));
+		builder.append("\n}\n\n");
 		
 		return builder.toString();
 	}
@@ -162,6 +169,11 @@ public class GoPattern implements IPattern
 		return Character.toLowerCase(text.charAt(0)) + text.substring(1);
 	}
 	
+	private String startWithUpperCase(String text)
+	{
+		return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+	}
+	
 	/**
 	 * Gets the type of the given field considering its properties (e.g. {@code isCollection}).
 	 * 
@@ -175,7 +187,7 @@ public class GoPattern implements IPattern
 		Contract.RequireNotNull(field);
 		
 		String rawType = typeMapper.getTargetType(field.getType());
-		String type = field.isCollection() ? "List<" + rawType + ">" : rawType;
+		String type = field.isCollection() ? "[]" + rawType : rawType;
 		
 		return type;
 	}
