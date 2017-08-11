@@ -20,20 +20,20 @@ public class JsonConverter
 	/**
 	 * Turn to true to print debug output and load the {@code example.json} file and {@code Java} target language.
 	 */
-	private static final boolean DUMMY_MODE = true;
-//	 private static final boolean DUMMY_MODE = false;
+	// private static final boolean DUMMY_MODE = true;
+	private static final boolean DUMMY_MODE = false;
 	
 	public static void main(String[] args)
 	{
 		if (DUMMY_MODE)
 		{
-//			Logger.__showDebug = true;
+			// Logger.__showDebug = true;
 			args = new String[4];
 			
-//			args[0] = "./example/example.json";
-//			args[1] = "go";
-//			args[2] = "./example/src/com/foo/bar/material/";
-//			args[3] = "com.foo.bar.material";
+			// args[0] = "./example/example.json";
+			// args[1] = "go";
+			// args[2] = "./example/src/com/foo/bar/material/";
+			// args[3] = "com.foo.bar.material";
 			
 			args[0] = "./example/example_error.json";
 			args[1] = "go";
