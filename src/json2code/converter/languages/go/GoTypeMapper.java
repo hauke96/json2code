@@ -15,8 +15,8 @@ public class GoTypeMapper extends AbstractTypeMapper
 	 */
 	public GoTypeMapper()
 	{
-		typeMap.put(STRING, "String");
+		typeMap.put(STRING, "string");
 		typeMap.put(NUMBER, "int");
-		typeMap.put(BOOLEAN, "boolean");
+		typeMap.put(BOOLEAN, "bool");
 	}
 }
