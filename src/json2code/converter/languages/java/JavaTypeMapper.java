@@ -17,6 +17,7 @@ public class JavaTypeMapper extends AbstractTypeMapper
 	{
 		typeMap.put(STRING, "String");
 		typeMap.put(NUMBER, "int");
+		typeMap.put(LONG, "long");
 		typeMap.put(BOOLEAN, "boolean");
 	}
 }
