@@ -35,9 +35,9 @@ public class SchemeConverter
 	 */
 	public SchemeConverter(SchemeFile schemeFile, String targetLanguage, String[] additionalArgs)
 	{
-		Contract.RequireNotNull(schemeFile);
-		Contract.RequireNotNullOrEmpty(targetLanguage);
-		Contract.RequireNotNull(additionalArgs);
+		Contract.NotNull(schemeFile);
+		Contract.NotNullOrEmpty(targetLanguage);
+		Contract.NotNull(additionalArgs);
 		
 		this.schemeFile = schemeFile;
 		this.targetLanguage = targetLanguage.toLowerCase();
@@ -77,11 +77,11 @@ public class SchemeConverter
 		if (patternApplier.hasResult())
 		{
 			Map<String, String> result = patternApplier.getResult();
-			result.values().forEach(string -> Logger.__info(string));
+			result.values().forEach(string -> Logger.info(string));
 		}
 		else
 		{
-			Logger.__error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
+			Logger.error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
 		}
 	}
 	
@@ -102,7 +102,7 @@ public class SchemeConverter
 		}
 		else
 		{
-			Logger.__error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
+			Logger.error("Converter for language " + targetLanguage + " has no result. First convert the json, then get the result.");
 		}
 	}
 	
@@ -133,7 +133,7 @@ public class SchemeConverter
 		}
 		String message = stringBuilder.toString();
 		
-		Logger.__fatal(message);
+		Logger.fatal(message);
 		return null; // will never be executed (Logger.__fatal will close the app), but the compiler needs it ;)
 	}
 }

@@ -37,8 +37,8 @@ public abstract class AbstractPatternApplier
 	 */
 	public void writeResultTo(String outputDirectory)
 	{
-		Contract.RequireNotNullOrEmpty(outputDirectory);
-		Contract.Require(hasResult());
+		Contract.NotNullOrEmpty(outputDirectory);
+		Contract.Satisfy(hasResult());
 		
 		outputWriter.write(outputDirectory, resultMap);
 	}
@@ -50,7 +50,7 @@ public abstract class AbstractPatternApplier
 	 */
 	public Map<String, String> getResult()
 	{
-		Contract.Require(hasResult());
+		Contract.Satisfy(hasResult());
 		
 		return resultMap;
 	}

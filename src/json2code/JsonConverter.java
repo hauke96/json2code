@@ -49,9 +49,9 @@ public class JsonConverter
 		
 		String[] additionalArgs = Arrays.copyOfRange(args, 3, args.length);
 		
-		Logger.__info("Use file       : " + fileName);
-		Logger.__info("Use language   : " + targetLanguage);
-		Logger.__info("Use output dir : " + outputDirectory);
+		Logger.info("Use file       : " + fileName);
+		Logger.info("Use language   : " + targetLanguage);
+		Logger.info("Use output dir : " + outputDirectory);
 		
 		SchemeReader schemeReader = new SchemeReader(fileName);
 		SchemeFile schemeFile = schemeReader.getSchemeFile();
@@ -73,7 +73,7 @@ public class JsonConverter
 	{
 		if (args.length < 3)
 		{
-			Logger.__fatal("Invalid argument count! The arguments must be: \n\n"
+			Logger.fatal("Invalid argument count! The arguments must be: \n\n"
 			        + "    1.) The file name of the scheme definition\n"
 			        + "    2.) The language of the output classes\n"
 			        + "    3.) Output directory\n"
@@ -86,7 +86,7 @@ public class JsonConverter
 		if (!file.exists())
 		{
 			String message = MessageFormat.format("File {0} does not exist!", args[0]);
-			Logger.__fatal(message);
+			Logger.fatal(message);
 		}
 	}
 }

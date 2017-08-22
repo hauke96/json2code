@@ -40,7 +40,7 @@ public abstract class AbstractTypeMapper
 		
 		String targetType = typeMap.get(schemeType);
 		
-		Contract.EnsureNotNull(targetType);
+		Contract.NotNull(targetType);
 		return targetType;
 	}
 }

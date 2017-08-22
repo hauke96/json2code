@@ -20,8 +20,8 @@ public class JavaOutputWriter implements IOutputWriter
 	@Override
 	public void write(String outputDirectory, Map<String, String> classes)
 	{
-		Contract.RequireNotNullOrEmpty(outputDirectory);
-		Contract.RequireNotNull(classes);
+		Contract.NotNullOrEmpty(outputDirectory);
+		Contract.NotNull(classes);
 		
 		if (!outputDirectory.endsWith("/"))
 		{
@@ -43,7 +43,7 @@ public class JavaOutputWriter implements IOutputWriter
 			}
 			catch (IOException e)
 			{
-				Logger.__error("Cannot write to file " + file.getName(), e);
+				Logger.error("Cannot write to file " + file.getName(), e);
 			}
 		}
 	}

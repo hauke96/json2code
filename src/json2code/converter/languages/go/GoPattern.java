@@ -20,7 +20,7 @@ public class GoPattern implements IPattern
 	 */
 	public GoPattern(AbstractTypeMapper typeMapper)
 	{
-		Contract.RequireNotNull(typeMapper);
+		Contract.NotNull(typeMapper);
 		
 		this.typeMapper = typeMapper;
 	}
@@ -28,7 +28,7 @@ public class GoPattern implements IPattern
 	@Override
 	public String getHeader(Class clazz)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("type ");
@@ -41,7 +41,7 @@ public class GoPattern implements IPattern
 	@Override
 	public String getHeader(Class clazz, String packageName)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		String header = "package " + packageName + "\n\n";
 		
@@ -53,7 +53,7 @@ public class GoPattern implements IPattern
 	@Override
 	public String getFieldDefinition(Field field)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		String name = field.getName();
 		
@@ -74,7 +74,7 @@ public class GoPattern implements IPattern
 	@Override
 	public String getCreator(Class clazz)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("func New");
@@ -184,7 +184,7 @@ public class GoPattern implements IPattern
 	// TODO move into type mapper
 	private String getTypeOf(Field field)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		String rawType = typeMapper.getTargetType(field.getType());
 		String type = field.isCollection() ? "[]" + rawType : rawType;

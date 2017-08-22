@@ -25,11 +25,11 @@ public class JavaPatternApplier extends AbstractPatternApplier
 	 */
 	public JavaPatternApplier(String[] additionalArgs)
 	{
-		Contract.RequireNotNull(additionalArgs);
+		Contract.NotNull(additionalArgs);
 		
 		if (additionalArgs.length != 1)
 		{
-			Logger.__fatal("The amount of arguments after the java-argument must be 1. Only specify the package name.");
+			Logger.fatal("The amount of arguments after the java-argument must be 1. Only specify the package name.");
 		}
 		
 		this.additionalArgs = additionalArgs;
@@ -68,6 +68,6 @@ public class JavaPatternApplier extends AbstractPatternApplier
 			resultMap.put(clazz.getName(), classCode.toString());
 		}
 		
-		Contract.EnsureNotNull(hasResult());
+		Contract.NotNull(hasResult());
 	}
 }

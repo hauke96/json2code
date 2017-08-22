@@ -27,7 +27,7 @@ public class JavaPattern implements IPattern
 	 */
 	public JavaPattern(AbstractTypeMapper typeMapper)
 	{
-		Contract.RequireNotNull(typeMapper);
+		Contract.NotNull(typeMapper);
 		
 		this.typeMapper = typeMapper;
 	}
@@ -35,7 +35,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getHeader(Class clazz)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		StringBuilder builder = new StringBuilder();
 		
@@ -50,7 +50,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getHeader(Class clazz, String packageName)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		String header = "package " + packageName + ";\n\n";
 		
@@ -62,7 +62,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getFieldDefinition(Field field)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		// For collections
 		String type = getTypeOf(field);
@@ -77,7 +77,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getCreator(Class clazz)
 	{
-		Contract.RequireNotNull(clazz);
+		Contract.NotNull(clazz);
 		
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("\n\tpublic ");
@@ -123,7 +123,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getMethods(Field field)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		String method = MessageFormat.format("\n\tpublic {0} get{1}()\n\t'{'\n\t\treturn {1};\n\t'}'\n", getTypeOf(field), field.getName());
 		
@@ -138,7 +138,7 @@ public class JavaPattern implements IPattern
 	@Override
 	public String getMethods(Field field, Class clazz)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		return getMethods(field);
 	}
@@ -159,7 +159,7 @@ public class JavaPattern implements IPattern
 	// TODO move into type mapper
 	private String getTypeOf(Field field)
 	{
-		Contract.RequireNotNull(field);
+		Contract.NotNull(field);
 		
 		String rawType = typeMapper.getTargetType(field.getType());
 		String type = field.isCollection() ? "List<" + rawType + ">" : rawType;

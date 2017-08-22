@@ -54,7 +54,7 @@ public class SchemeReader
 	// TODO add simple warning handler (lambda, which is defined here as "DefaultWarningHandler")
 	public SchemeFile getSchemeFile()
 	{
-		Logger.__info("Read file ...");
+		Logger.info("Read file ...");
 		
 		byte[] encoded = null;
 		try
@@ -64,11 +64,11 @@ public class SchemeReader
 		catch (IOException e)
 		{
 			String message = MessageFormat.format("File {0} could not be read properly.", fileName);
-			Logger.__fatal(message, e);
+			Logger.fatal(message, e);
 		}
 		String content = new String(encoded, Charset.defaultCharset());
 		
-		Logger.__info("Convert json into scheme object...");
+		Logger.info("Convert json into scheme object...");
 		
 		Set<String> knownClasses = new HashSet<>();
 		
@@ -161,11 +161,11 @@ public class SchemeReader
 		
 		if (errorOccurred)
 		{
-			Logger.__fatal("Parsing exited with error(s).");
+			Logger.fatal("Parsing exited with error(s).");
 		}
 		if (warningOccurred)
 		{
-			Logger.__info("Parsing exited with warning(s).");
+			Logger.info("Parsing exited with warning(s).");
 		}
 		
 		return result;
@@ -176,11 +176,11 @@ public class SchemeReader
 	
 	private void warn(String message)
 	{
-		Logger.__info("Parsing warning: " + message);
+		Logger.info("Parsing warning: " + message);
 	}
 	
 	private void error(String message)
 	{
-		Logger.__error("Parsing error: " + message);
+		Logger.error("Parsing error: " + message);
 	}
 }
