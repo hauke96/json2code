@@ -19,5 +19,7 @@ public class GoTypeMapper extends AbstractTypeMapper
 		typeMap.put(NUMBER, "int");
 		typeMap.put(LONG, "int64");
 		typeMap.put(BOOLEAN, "bool");
+		typeMap.put(DOUBLE, "float64");
+		typeMap.put(FLOAT, "float32");
 	}
 }

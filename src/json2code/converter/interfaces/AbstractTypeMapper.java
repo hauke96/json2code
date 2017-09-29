@@ -17,6 +17,8 @@ public abstract class AbstractTypeMapper
 	protected static final String	NUMBER	= "int";
 	protected static final String	LONG	= "long";
 	protected static final String	BOOLEAN	= "bool";
+	protected static final String	DOUBLE	= "double";
+	protected static final String	FLOAT	= "float";
 	
 	protected Map<String, String> typeMap;
 	

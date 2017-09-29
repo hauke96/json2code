@@ -19,5 +19,7 @@ public class JavaTypeMapper extends AbstractTypeMapper
 		typeMap.put(NUMBER, "int");
 		typeMap.put(LONG, "long");
 		typeMap.put(BOOLEAN, "boolean");
+		typeMap.put(DOUBLE, "double");
+		typeMap.put(FLOAT, "float");
 	}
 }
